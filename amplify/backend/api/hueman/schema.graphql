@@ -1,0 +1,41 @@
+type Address {
+  Street: String
+  City: String
+  State: String
+  PostalCode: Int
+}
+
+type Ratings @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  Rating: Int
+  Review: String
+  DateLeft: AWSDateTime
+  userID: ID! @index(name: "byUser")
+  businessID: ID! @index(name: "byBusiness")
+}
+
+type Business @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  userID: ID! @index(name: "byUser")
+  Owner: String
+  Name: String
+  TotalReviews: Int
+  Rating: Float
+  Address: Address
+  Hours: String
+  BusinessesRatings: [Ratings] @hasMany(indexName: "byBusiness", fields: ["id"])
+}
+
+type User @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  Username: String
+  FirstName: String
+  LastName: String
+  Email: AWSEmail
+  Phone: AWSPhone
+  Birthday: AWSDate
+  Owner: Boolean
+  OwnedBusiness: [Business] @hasMany(indexName: "byUser", fields: ["id"])
+  UsersRating: [Ratings] @hasMany(indexName: "byUser", fields: ["id"])
+}
+ 
