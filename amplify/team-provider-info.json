@@ -10,6 +10,11 @@
       "StackName": "amplify-hueman-dev-235923",
       "StackId": "arn:aws:cloudformation:us-east-1:312338149856:stack/amplify-hueman-dev-235923/ecb39050-b7c3-11ed-bac1-1222786926dd",
       "AmplifyAppId": "d15j6744vjww9"
+    },
+    "categories": {
+      "auth": {
+        "hueman": {}
+      }
     }
   },
   "staging": {
